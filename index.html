@@ -1,809 +1,199 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>StreetStyle — Tienda</title>
-
-  <!-- Tipografía (Google Fonts) -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-
-  <meta name="description" content="StreetStyle — Hoodies, Gorras y Buzos. Tienda estática lista para GitHub Pages.">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StreetStyle | E-commerce</title>
   <style>
-    /* ========== Variables de color (inspiradas en la mockup) ========== */
-    :root{
-      --charcoal: #121212;          /* deep charcoal */
-      --electric: #00c2ff;         /* electric blue */
-      --vibrant: #ffca05;          /* vibrant yellow */
-      --concrete: #e9eaec;         /* concrete gray */
-      --white: #ffffff;            /* pure white */
-      --muted: #6b6b6b;
-      --success: #28a745;
-      --danger: #dc3545;
-      --glass: rgba(255,255,255,0.6);
-      --card-radius: 14px;
-      --max-width: 1200px;
+    :root {
+      --charcoal: #1E1E1E;
+      --blue: #00AEEF;
+      --yellow: #FFD500;
+      --gray: #E5E5E5;
+      --white: #FFFFFF;
     }
 
-    /* ========== Reset & base ========== */
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: 'Montserrat', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background: linear-gradient(180deg, #fafafa 0%, #f4f4f4 100%);
-      color: #222;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      display:flex;
-      justify-content:center;
-      padding:28px 16px;
+    body {
+      font-family: 'Poppins', system-ui, sans-serif;
+      background-color: var(--gray);
+      margin: 0;
+      padding: 0;
+      color: var(--charcoal);
     }
 
-    /* Container central */
-    .site{
-      width:100%;
-      max-width: var(--max-width);
+    /* NAVBAR */
+    nav {
+      background: var(--charcoal);
+      color: var(--white);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
     }
-
-    /* ========== Header / Nav ========== */
-    header.site-header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:20px;
-      margin-bottom:20px;
+    nav h1 {
+      font-size: 1.4rem;
+      letter-spacing: 1px;
     }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      text-decoration:none;
-      color:var(--charcoal);
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+      margin: 0;
     }
-    .brand .logo{
-      width:52px;
-      height:52px;
-      background: linear-gradient(135deg,var(--charcoal), #333);
-      border-radius:8px;
-      display:grid;
-      place-items:center;
-      color:var(--white);
-      font-weight:700;
-      font-size:20px;
-      box-shadow: 0 6px 18px rgba(18,18,18,0.12);
-    }
-    .brand h1{
-      margin:0;
-      font-size:20px;
-      letter-spacing:0.6px;
-    }
-    .brand p{margin:0;color:var(--muted);font-size:12px}
-
-    /* Nav actions (filters + cart btn) */
-    .actions{
-      display:flex;
-      align-items:center;
-      gap:12px;
-    }
-
-    .filters{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-    }
-
-    .btn{
-      border: none;
+    nav ul li {
       cursor: pointer;
-      padding:10px 14px;
-      border-radius:10px;
-      font-weight:600;
-      font-size:13px;
-      transition:transform .12s ease, box-shadow .12s ease;
-      box-shadow: 0 4px 12px rgba(30,30,30,0.06);
+      transition: color 0.3s;
     }
-    .btn:active{transform:translateY(1px)}
-    .btn--ghost{
-      background:transparent;
-      color:var(--charcoal);
-      border:1px solid rgba(18,18,18,0.06);
-    }
-    .btn--primary{
-      background:var(--electric);
-      color:var(--charcoal);
-    }
-    .btn--accent{
-      background:var(--vibrant);
-      color:var(--charcoal);
+    nav ul li:hover {
+      color: var(--yellow);
     }
 
-    /* Cart button */
-    .cart-btn{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      background:var(--charcoal);
-      color:var(--white);
-      padding:10px 12px;
-      border-radius:10px;
-      font-weight:700;
-      border:none;
-    }
-    .cart-badge{
-      background:var(--vibrant);
-      color:var(--charcoal);
-      padding:4px 8px;
-      border-radius:999px;
-      font-weight:700;
-      font-size:12px;
-      min-width:28px;
-      text-align:center;
+    /* PRODUCTOS */
+    .productos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 40px 10px;
     }
 
-    /* ========== Layout ========== */
-    main{
-      display:grid;
-      grid-template-columns: 1fr 360px;
-      gap:28px;
-      align-items:start;
+    .producto {
+      background: var(--white);
+      border-radius: 12px;
+      width: 240px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s;
     }
 
-    /* Mobile: cart collapses below products */
-    @media (max-width:980px){
-      main{grid-template-columns:1fr}
+    .producto:hover {
+      transform: translateY(-5px);
     }
 
-    /* Products area */
-    .panel{
-      background: linear-gradient(180deg, rgba(255,255,255,0.9), var(--white));
-      border-radius: var(--card-radius);
-      padding:20px;
-      box-shadow: 0 10px 30px rgba(16,16,16,0.04);
+    .producto img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
     }
 
-    .panel h2{
-      margin:0 0 14px 0;
-      font-size:18px;
-      letter-spacing:0.4px;
+    .producto h3 {
+      margin: 10px 0 5px;
+      color: var(--charcoal);
     }
 
-    /* Filter / search row inside panel */
-    .controls{
-      display:flex;
-      gap:12px;
-      align-items:center;
-      margin-bottom:18px;
-      flex-wrap:wrap;
-    }
-    .search{
-      flex:1;
-      display:flex;
-      align-items:center;
-      gap:8px;
-      background:var(--concrete);
-      padding:8px 12px;
-      border-radius:10px;
-    }
-    .search input{
-      border:none;
-      background:transparent;
-      outline:none;
-      font-size:14px;
-      width:100%;
+    .producto p {
+      margin: 0;
+      color: #555;
     }
 
-    /* Grid of products */
-    .grid{
-      display:grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap:18px;
+    .producto button {
+      background-color: var(--blue);
+      border: none;
+      color: white;
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 10px 0 15px;
+      width: 80%;
+      transition: background 0.3s;
     }
 
-    .card{
-      background:var(--white);
-      border-radius:12px;
-      padding:12px;
-      text-align:left;
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      border:1px solid rgba(18,18,18,0.04);
-      transition: transform .14s ease, box-shadow .14s ease;
-    }
-    .card:hover{
-      transform: translateY(-6px);
-      box-shadow: 0 18px 40px rgba(18,18,18,0.06);
+    .producto button:hover {
+      background-color: var(--yellow);
+      color: var(--charcoal);
     }
 
-    .card .thumb{
-      width:100%;
-      aspect-ratio: 4/3;
-      overflow:hidden;
-      border-radius:10px;
-      background:linear-gradient(180deg,#f2f2f2,#e9e9e9);
-      display:grid;
-      place-items:center;
-    }
-    .card img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-    }
-    .card h3{
-      margin:0;
-      font-size:15px;
-    }
-    .price-row{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-    }
-    .price{
-      font-weight:700;
-      color:var(--charcoal);
-    }
-    .muted{
-      color:var(--muted);
-      font-size:13px;
+    /* CARRITO */
+    .carrito {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 20px;
+      margin: 40px auto;
+      max-width: 500px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
 
-    .card .actions{
-      display:flex;
-      gap:8px;
-      margin-top:auto;
+    .carrito h2 {
+      text-align: center;
     }
 
-    /* ========== Carrito (panel derecho en desktop; modal en móvil) ========== */
-    .cart-panel{
-      position:sticky;
-      top:24px;
-      align-self:start;
-      background: linear-gradient(180deg, var(--white), #fbfbfb);
-      padding:16px;
-      border-radius: var(--card-radius);
-      box-shadow: 0 10px 30px rgba(18,18,18,0.05);
-      border:1px solid rgba(18,18,18,0.04);
+    #lista-carrito {
+      list-style: none;
+      padding: 0;
+      margin: 10px 0;
     }
 
-    .cart-panel h3{margin:0 0 8px 0}
-    .cart-items{
-      list-style:none;
-      padding:0;
-      margin:8px 0 12px 0;
-      max-height:340px;
-      overflow:auto;
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-    }
-    .cart-item{
-      display:flex;
-      gap:8px;
-      align-items:center;
-      background: #fff;
-      padding:8px;
-      border-radius:8px;
-      border:1px solid rgba(0,0,0,0.03);
-    }
-    .cart-item img{
-      width:48px;height:48px;object-fit:cover;border-radius:6px;
-    }
-    .cart-item .meta{
-      flex:1;
-      font-size:13px;
-    }
-    .cart-item .meta b{display:block;font-size:13px}
-    .qty{
-      display:flex;align-items:center;gap:6px;
-    }
-    .qty button{
-      width:28px;height:28px;border-radius:6px;border:1px solid rgba(0,0,0,0.06);
-      background:transparent;font-weight:700;cursor:pointer;
+    #lista-carrito li {
+      border-bottom: 1px solid var(--gray);
+      padding: 5px 0;
     }
 
-    .cart-footer{
-      display:flex;
-      gap:8px;
-      justify-content:space-between;
-      align-items:center;
-      margin-top:10px;
+    .carrito p {
+      font-weight: bold;
+      text-align: right;
+      margin: 10px 0;
     }
 
-    /* Empty state */
-    .empty{
-      text-align:center;
-      color:var(--muted);
-      padding:18px;
-      border-radius:10px;
-      background:linear-gradient(180deg, rgba(0,0,0,0.01), rgba(0,0,0,0.005));
+    .carrito button.vaciar {
+      background-color: #dc3545;
+      border: none;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 6px;
+      cursor: pointer;
     }
 
-    /* Footer */
-    footer{
-      margin-top:28px;
-      text-align:center;
-      color:var(--muted);
-      font-size:13px;
+    /* FOOTER */
+    footer {
+      background: var(--charcoal);
+      color: var(--white);
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
     }
 
-    /* Responsive cart as modal on small screens */
-    @media (max-width:980px){
-      .cart-panel{
-        position:fixed;
-        right:12px;
-        bottom:12px;
-        width:calc(100% - 24px);
-        max-width:420px;
-        transform: translateY(110%);
-        transition: transform .28s cubic-bezier(.2,.9,.3,1);
-        z-index:150;
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        gap: 10px;
       }
-      .cart-panel.open{ transform: translateY(0%); }
-      .cart-toggle{
-        position:fixed;
-        right:18px;
-        bottom:18px;
-        z-index:160;
-        background:var(--charcoal);
-        color:var(--white);
-        border-radius:999px;
-        padding:12px 16px;
-        box-shadow: 0 12px 30px rgba(18,18,18,0.18);
-        border:none;
-        display:inline-flex;
-        align-items:center;
-        gap:8px;
+      .productos {
+        flex-direction: column;
+        align-items: center;
       }
     }
-
-    /* Tiny screens: product grid spacing */
-    @media (max-width:420px){
-      .grid{grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));}
-    }
-
-    /* Utilities */
-    .text-right{text-align:right}
-    .muted-small{font-size:12px;color:var(--muted)}
   </style>
 </head>
 <body>
-  <div class="site">
 
-    <!-- ========== Header ========== -->
-    <header class="site-header">
-      <a class="brand" href="#">
-        <div class="logo">SS</div>
-        <div>
-          <h1>StreetStyle</h1>
-          <p>Tienda · Hoodies · Gorras · Buzos</p>
-        </div>
-      </a>
+  <nav>
+    <h1>StreetStyle 🧢</h1>
+    <ul>
+      <li onclick="filtrarCategoria('Hoodie')">Hoodies</li>
+      <li onclick="filtrarCategoria('Gorra')">Gorras</li>
+      <li onclick="filtrarCategoria('Buso')">Buzos</li>
+    </ul>
+  </nav>
 
-      <div class="actions">
-        <!-- Filters in header (mobile-friendly) -->
-        <div class="filters" role="tablist" aria-label="Categorías">
-          <button class="btn btn--ghost" data-filter="all">Todos</button>
-          <button class="btn btn--ghost" data-filter="hoodie">Hoodies</button>
-          <button class="btn btn--ghost" data-filter="gorra">Gorras</button>
-          <button class="btn btn--ghost" data-filter="buzo">Buzos</button>
-        </div>
+  <section class="productos" id="productos"></section>
 
-        <button id="openCartDesktop" class="cart-btn" aria-expanded="false" title="Abrir carrito">
-          🛒 <span id="cartTotalText">Carrito</span>
-          <span class="cart-badge" id="cartCount">0</span>
-        </button>
-      </div>
-    </header>
-
-    <!-- ========== Main layout: products + cart ========== -->
-    <main>
-      <!-- Products panel -->
-      <section class="panel" aria-labelledby="products-title">
-        <h2 id="products-title">Productos</h2>
-
-        <div class="controls">
-          <div class="search" role="search">
-            🔎
-            <input id="searchInput" type="search" placeholder="Buscar producto, ejemplo: 'Black'..." aria-label="Buscar productos">
-          </div>
-
-          <!-- small filter buttons inside panel -->
-          <div style="display:inline-flex;gap:8px">
-            <button class="btn btn--primary" data-filter="all">Ver todos</button>
-            <button class="btn btn--ghost" data-filter="hoodie">Hoodies</button>
-          </div>
-        </div>
-
-        <div id="productos" class="grid" aria-live="polite">
-          <!-- Productos renderizados por JS -->
-        </div>
-      </section>
-
-      <!-- Cart panel -->
-      <aside class="cart-panel" id="cartPanel" aria-label="Carrito de compras">
-        <h3>🛒 Carrito</h3>
-        <div id="cartContent">
-          <ul id="lista-carrito" class="cart-items" aria-live="polite"></ul>
-
-          <div id="cartEmpty" class="empty" style="display:none">
-            Tu carrito está vacío. Agrega productos para comenzar 🧾
-          </div>
-
-          <div class="cart-footer" id="cartFooter" style="display:none">
-            <div>
-              <div class="muted-small">Total</div>
-              <div class="price" id="total">$0</div>
-            </div>
-
-            <div style="display:flex;flex-direction:column;gap:8px">
-              <button id="checkoutBtn" class="btn btn--primary">✅ Finalizar</button>
-              <button id="vaciarBtn" class="btn btn--ghost">🗑️ Vaciar</button>
-            </div>
-          </div>
-        </div>
-      </aside>
-    </main>
-
-    <footer>
-      © <span id="currentYear"></span> StreetStyle — Diseñado para GitHub Pages · Demo estática
-    </footer>
+  <div class="carrito">
+    <h2>🛒 Carrito de Compras (0)</h2>
+    <ul id="lista-carrito"></ul>
+    <p><strong>Total: $<span id="total">0.00</span></strong></p>
+    <button class="vaciar" onclick="vaciarCarrito()">🗑️ Vaciar Carrito</button>
+    <div id="paypal-button-container" style="margin-top:15px;"></div>
   </div>
 
-  <!-- Botón flotante de carrito para móvil -->
-  <button id="cartToggleMobile" class="cart-toggle" style="display:none" aria-controls="cartPanel" aria-expanded="false">🛍️ <span id="mobileCartCount" style="font-weight:700;margin-left:6px">0</span></button>
+  <footer>
+    <p>© 2025 StreetStyle. Todos los derechos reservados.</p>
+  </footer>
 
   <script>
-    /****************************************************************
-     * Datos iniciales de productos (tomados del código base)
-     * cada producto incluye: id, nombre, precio (en COP), imagen, categoría
-     ****************************************************************/
     const productos = [
-      {
-        id: 1,
-        nombre: "Hoodie “Black Street”",
-        precio: 120000,
-        imagen: "https://remanence.co/cdn/shop/files/Hoodie_Regularfit_Summit.png?v=1758831119",
-        categoria: "hoodie"
-      },
-      {
-        id: 2,
-        nombre: "Hoodie “Retro Gray”",
-        precio: 115000,
-        imagen: "https://hmcolombia.vtexassets.com/arquivos/ids/5535032/Hoodie---Gris-claro-jaspeado---H-M-CO.jpg?v=638900935370670000",
-        categoria: "hoodie"
-      },
-      {
-        id: 3,
-        nombre: "Gorra “NYC Flat”",
-        precio: 75000,
-        imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEh0FJEpPEyFjmGpNNc2uyMDZ0Acl-TVpcdg&s",
-        categoria: "gorra"
-      },
-      {
-        id: 4,
-        nombre: "Gorra “Classic White”",
-        precio: 70000,
-        imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT995PAxrwNjpXX7UAf_6i360oAl_WGhowhQQ&s",
-        categoria: "gorra"
-      },
-      {
-        id: 5,
-        nombre: "Buso Oversize “Storm”",
-        precio: 95000,
-        imagen: "https://oaxis-cloud.s3.us-east-2.amazonaws.com/images/2025/08/01/medium/az2wEY4iznZH4TErRbfW.jpg",
-        categoria: "buzo"
-      },
-      {
-        id: 6,
-        nombre: "Buso Oversize “Skyline”",
-        precio: 99000,
-        imagen: "https://tommycolombia.vtexassets.com/arquivos/ids/1451804-800-auto?v=638918347020400000&width=800&height=auto&aspect=true",
-        categoria: "buzo"
-      },
-    ];
-
-    // Carrito — se inicializa desde localStorage si existe
-    let carrito = JSON.parse(localStorage.getItem('streetstyle_cart') || '[]');
-
-    // Referencias DOM
-    const contenedorProductos = document.getElementById("productos");
-    const listaCarrito = document.getElementById("lista-carrito");
-    const totalCarrito = document.getElementById("total");
-    const cartCount = document.getElementById("cartCount");
-    const mobileCartCount = document.getElementById("mobileCartCount");
-    const cartPanel = document.getElementById("cartPanel");
-    const cartFooter = document.getElementById("cartFooter");
-    const cartEmpty = document.getElementById("cartEmpty");
-    const openCartDesktop = document.getElementById("openCartDesktop");
-    const cartToggleMobile = document.getElementById("cartToggleMobile");
-    const searchInput = document.getElementById("searchInput");
-    const filtersButtons = document.querySelectorAll('[data-filter]');
-    const currentYearEl = document.getElementById("currentYear");
-
-    currentYearEl.textContent = new Date().getFullYear();
-
-    /************ UTIL: formatea números a moneda local (COP) ************/
-    function formatCOP(number){
-      // Mostrar sin decimales, con separador de miles
-      return number.toLocaleString('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 });
-    }
-
-    /************ RENDER: Productos ************/
-    function mostrarProductos(list = productos){
-      contenedorProductos.innerHTML = '';
-      if(!list.length){
-        contenedorProductos.innerHTML = `<div class="empty" style="width:100%">No se encontraron productos.</div>`;
-        return;
-      }
-
-      list.forEach(prod => {
-        const card = document.createElement('article');
-        card.className = 'card';
-        card.setAttribute('role','article');
-        card.innerHTML = `
-          <div class="thumb" aria-hidden="true">
-            <img loading="lazy" src="${prod.imagen}" alt="${prod.nombre}">
-          </div>
-          <h3>${prod.nombre}</h3>
-          <div class="muted-small">${capitalize(prod.categoria)}</div>
-          <div class="price-row">
-            <div class="price">${formatCOP(prod.precio)}</div>
-            <div class="muted">${prod.precio ? '' : ''}</div>
-          </div>
-          <div class="actions">
-            <button class="btn btn--primary" data-id="${prod.id}" aria-label="Agregar ${prod.nombre} al carrito">Agregar</button>
-            <button class="btn btn--ghost" data-detail="${prod.id}">Ver</button>
-          </div>
-        `;
-        contenedorProductos.appendChild(card);
-      });
-
-      // Delegado: botones Agregar
-      contenedorProductos.querySelectorAll('[data-id]').forEach(btn => {
-        btn.addEventListener('click', e => {
-          const id = Number(e.currentTarget.dataset.id);
-          agregarAlCarrito(id);
-        });
-      });
-
-      // Delegado: Ver detalle (simple)
-      contenedorProductos.querySelectorAll('[data-detail]').forEach(btn => {
-        btn.addEventListener('click', e => {
-          const id = Number(e.currentTarget.dataset.detail);
-          const p = productos.find(x=>x.id===id);
-          alert(`${p.nombre}\n\nPrecio: ${formatCOP(p.precio)}\nCategoría: ${capitalize(p.categoria)}`);
-        });
-      });
-
-    }
-
-    /************ AGREGAR AL CARRITO ************/
-    function agregarAlCarrito(id){
-      const prod = productos.find(p => p.id === id);
-      if(!prod) return;
-      const existente = carrito.find(i => i.id === id);
-      if(existente){
-        existente.cantidad++;
-      } else {
-        carrito.push({ ...prod, cantidad: 1 });
-      }
-      guardarYActualizar();
-      openCartBrief();
-    }
-
-    /************ ACTUALIZAR INTERFAZ DEL CARRITO ************/
-    function actualizarCarritoDOM(){
-      listaCarrito.innerHTML = '';
-
-      if(carrito.length === 0){
-        cartEmpty.style.display = 'block';
-        cartFooter.style.display = 'none';
-      } else {
-        cartEmpty.style.display = 'none';
-        cartFooter.style.display = 'flex';
-      }
-
-      let total = 0;
-      let items = 0;
-
-      carrito.forEach(item => {
-        const li = document.createElement('li');
-        li.className = 'cart-item';
-        li.innerHTML = `
-          <img src="${item.imagen}" alt="${item.nombre}">
-          <div class="meta">
-            <b>${item.nombre}</b>
-            <div class="muted-small">${formatCOP(item.precio)} · x${item.cantidad}</div>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:6px;align-items:center">
-            <div class="qty">
-              <button class="dec" data-id="${item.id}">−</button>
-              <div style="min-width:26px;text-align:center">${item.cantidad}</div>
-              <button class="inc" data-id="${item.id}">+</button>
-            </div>
-            <button class="btn btn--ghost" data-remove="${item.id}" style="padding:6px 10px;font-size:12px">Eliminar</button>
-          </div>
-        `;
-        listaCarrito.appendChild(li);
-
-        total += item.precio * item.cantidad;
-        items += item.cantidad;
-      });
-
-      totalCarrito.textContent = formatCOP(total);
-      cartCount.textContent = items;
-      mobileCartCount.textContent = items;
-      document.getElementById('cartTotalText').textContent = items ? `Carrito (${items})` : 'Carrito';
-
-      // eventos de increment/decrement/eliminar
-      listaCarrito.querySelectorAll('.inc').forEach(b => {
-        b.addEventListener('click', () => {
-          const id = Number(b.dataset.id);
-          cambiarCantidad(id, 1);
-        });
-      });
-      listaCarrito.querySelectorAll('.dec').forEach(b => {
-        b.addEventListener('click', () => {
-          const id = Number(b.dataset.id);
-          cambiarCantidad(id, -1);
-        });
-      });
-      listaCarrito.querySelectorAll('[data-remove]').forEach(b => {
-        b.addEventListener('click', () => {
-          const id = Number(b.dataset.remove);
-          quitarProducto(id);
-        });
-      });
-    }
-
-    function cambiarCantidad(id, delta){
-      const item = carrito.find(i => i.id === id);
-      if(!item) return;
-      item.cantidad += delta;
-      if(item.cantidad <= 0){
-        // confirmar eliminación
-        if(confirm('¿Eliminar este producto del carrito?')){
-          carrito = carrito.filter(i => i.id !== id);
-        } else {
-          item.cantidad = 1;
-        }
-      }
-      guardarYActualizar();
-    }
-
-    function quitarProducto(id){
-      carrito = carrito.filter(i => i.id !== id);
-      guardarYActualizar();
-    }
-
-    /************ VACÍAR & FINALIZAR ************/
-    document.getElementById('vaciarBtn').addEventListener('click', () => {
-      if(confirm('¿Estás seguro de vaciar el carrito?')){
-        carrito = [];
-        guardarYActualizar();
-      }
-    });
-
-    document.getElementById('checkoutBtn').addEventListener('click', () => {
-      if(carrito.length === 0){ alert('El carrito está vacío.'); return; }
-      // Simular checkout
-      alert('🎉 Gracias por tu compra. (Demo estática) — Total: ' + formatCOP(carrito.reduce((s,i)=>s+i.precio*i.cantidad,0)));
-      carrito = [];
-      guardarYActualizar();
-    });
-
-    /************ GUARDAR EN STORAGE Y ACTUALIZAR ************/
-    function guardarYActualizar(){
-      localStorage.setItem('streetstyle_cart', JSON.stringify(carrito));
-      actualizarCarritoDOM();
-    }
-
-    /************ FILTRADO / BÚSQUEDA ************/
-    function filtrarProductos(filter = 'all', q = ''){
-      q = q.trim().toLowerCase();
-      let res = productos.filter(p => {
-        const matchCat = (filter === 'all') ? true : (p.categoria === filter);
-        const matchQ = q ? (p.nombre.toLowerCase().includes(q) || p.categoria.toLowerCase().includes(q)) : true;
-        return matchCat && matchQ;
-      });
-      mostrarProductos(res);
-    }
-
-    // Eventos en botones de filtro
-    filtersButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const filter = btn.dataset.filter;
-        filtrarProductos(filter, searchInput.value || '');
-        // resaltar botón activo
-        filtersButtons.forEach(b => b.classList.remove('btn--accent'));
-        btn.classList.add('btn--accent');
-      });
-    });
-
-    // Search input
-    searchInput.addEventListener('input', (e) => {
-      const q = e.target.value;
-      // detectar botón de filtro activo
-      const active = Array.from(filtersButtons).find(b=>b.classList.contains('btn--accent'));
-      let filter = active ? active.dataset.filter : 'all';
-      filtrarProductos(filter, q);
-    });
-
-    /************ COMPORTAMIENTO DEL PANEL CARRITO (móvil/desktop) ************/
-    function setupCartUI(){
-      // Mostrar botón flotante sólo en pantallas pequeñas
-      function refreshCartToggle(){
-        if(window.matchMedia('(max-width:980px)').matches){
-          cartToggleMobile.style.display = 'inline-flex';
-          // keep panel hidden until toggle
-          cartPanel.classList.remove('open');
-          cartToggleMobile.setAttribute('aria-expanded','false');
-        } else {
-          cartToggleMobile.style.display = 'none';
-          cartPanel.classList.add('open'); // en escritorio lo dejamos visible (sticky)
-        }
-      }
-
-      refreshCartToggle();
-      window.addEventListener('resize', refreshCartToggle);
-
-      cartToggleMobile.addEventListener('click', () => {
-        const isOpen = cartPanel.classList.toggle('open');
-        cartToggleMobile.setAttribute('aria-expanded', isOpen);
-      });
-
-      openCartDesktop.addEventListener('click', () => {
-        // Si estamos en móvil, abrir panel; si en desktop, hacer scroll hacia panel
-        if(window.matchMedia('(max-width:980px)').matches){
-          cartPanel.classList.add('open');
-        } else {
-          cartPanel.scrollIntoView({behavior:'smooth', block:'center'});
-        }
-      });
-    }
-
-    // pequeña animación al agregar
-    function openCartBrief(){
-      if(window.matchMedia('(max-width:980px)').matches){
-        cartPanel.classList.add('open');
-        setTimeout(()=>cartPanel.classList.remove('open'), 1600);
-      } else {
-        // sombra/flash (brief)
-        cartPanel.style.transform = 'translateY(-4px)';
-        setTimeout(()=>cartPanel.style.transform = '', 160);
-      }
-    }
-
-    /************ Helpers ************/
-    function capitalize(s){ return s.charAt(0).toUpperCase() + s.slice(1); }
-
-    /************ Inicialización ************/
-    (function init(){
-      mostrarProductos();
-      guardarYActualizar();
-      setupCartUI();
-
-      // default: marcar "Todos"
-      document.querySelectorAll('[data-filter]').forEach(b => {
-        if(b.dataset.filter === 'all') b.classList.add('btn--accent');
-      });
-
-      // Si el carrito estaba cerrado en móvil, ocultarlo al cargar
-      if(window.matchMedia('(max-width:980px)').matches){
-        cartPanel.classList.remove('open');
-        cartToggleMobile.style.display = 'inline-flex';
-      }
-
-      // Mostrar el botón móvil sólo si hay pequeño viewport
-      if(window.matchMedia('(max-width:980px)').matches){
-        cartToggleMobile.style.display = 'inline-flex';
-      }
-    })();
-  </script>
-</body>
-</html>
+      { id: 1, nombre: "Hoodie “Black Street”", precio: 120000, categoria: "Hoodie", imagen: "https://remanence.co/cdn/shop/files/Hoodie_Regularfit_Summit.png?v=1758831119" },
+      { id: 2, nombre: "Hoodie “Retro Gray”", precio: 115000, categoria: "Hoodie", imagen: "https://hmcolombia.vtexassets.com/arquivos/ids/5535032/Hoodie---Gris-claro-jaspeado---H-M-CO.jpg?v=638900935370670000" },
+      { id: 3, nombre: "Gorra “NYC Flat”", precio: 75000, categoria: "Gorra", imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEh0FJEpPEyFjmGpNNc2uyMDZ0Acl-TVpcdg&s" },
+      { id: 4, nombre: "Gorra “Classic White”", precio: 70000, categoria: "Gorra", imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT995PAxrwNjpXX7UAf_6i360oAl_WGhowhQQ&s" },
+      { id: 5, nombre: "Buso Oversize “Storm”", precio: 95000, categoria: "Buso", imagen: "https://oaxis-cloud.s3.us-east-2.amazonaws.com/images/2025/08/01/medium/az2wEY4iznZH4TErRbfW.jpg" },
+      { id: 6, nombre: "Buso Oversize “Skyline”", precio: 99000, ca

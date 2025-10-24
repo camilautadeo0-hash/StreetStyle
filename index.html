@@ -4,9 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>StreetStyle — Tienda</title>
-  <meta name="description" content="StreetStyle - Hoodies, Gorras, Buzos. Demo estática con PayPal (client-side) listo para GitHub Pages.">
-
-  <!-- Fuente -->
+  <meta name="description" content="StreetStyle - Hoodies, Gorras, Buzos. Tienda demo con PayPal funcional.">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
@@ -31,82 +29,49 @@
       padding:24px;
     }
     .site{width:100%;max-width:var(--max-width)}
-
-    /* Header */
-    header{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      margin-bottom:18px;
-    }
+    header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;}
     .brand{display:flex;gap:12px;align-items:center;text-decoration:none;color:inherit}
     .logo{width:52px;height:52px;border-radius:10px;background:linear-gradient(135deg,var(--charcoal),#333);color:var(--white);display:grid;place-items:center;font-weight:800}
     .brand h1{margin:0;font-size:20px}
     .brand p{margin:0;color:var(--muted);font-size:12px}
-
-    /* Header actions */
     .actions{display:flex;gap:12px;align-items:center}
     .filters{display:flex;gap:8px;flex-wrap:wrap}
     .btn{border:none;padding:8px 12px;border-radius:10px;font-weight:700;cursor:pointer;background:var(--concrete)}
     .btn.primary{background:var(--electric);color:var(--charcoal)}
     .btn.accent{background:var(--vibrant);color:var(--charcoal)}
     .cart-btn{background:var(--charcoal);color:var(--white);padding:10px 12px;border-radius:10px;display:inline-flex;gap:8px;align-items:center}
-
-    /* Main layout */
     main{display:grid;grid-template-columns:1fr 360px;gap:22px;align-items:start}
     @media (max-width:980px){main{grid-template-columns:1fr}}
-
-    /* Panel */
     .panel{background:var(--white);border-radius:14px;padding:18px;box-shadow:0 8px 30px rgba(16,16,16,0.05)}
     .panel h2{margin:0 0 12px 0}
-
-    /* Controls */
     .controls{display:flex;gap:10px;align-items:center;margin-bottom:14px;flex-wrap:wrap}
     .search{display:flex;align-items:center;gap:8px;background:var(--concrete);padding:8px 12px;border-radius:10px;flex:1}
     .search input{border:0;background:transparent;outline:none;width:100%;font-size:14px}
-
-    /* Product grid */
     .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
     .card{background:var(--white);border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:8px;border:1px solid rgba(0,0,0,0.04);transition:transform .14s}
     .card:hover{transform:translateY(-6px)}
     .thumb{width:100%;aspect-ratio:4/3;overflow:hidden;border-radius:10px;background:#f2f2f2;display:grid;place-items:center}
     .thumb img{width:100%;height:100%;object-fit:cover;display:block}
-
-    /* Title clamp to 2 lines */
-    .card h3{
-      margin:0;font-size:15px;line-height:1.15;
-      display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-overflow:ellipsis;
-    }
+    .card h3{margin:0;font-size:15px;line-height:1.15;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-overflow:ellipsis;}
     .meta{color:var(--muted);font-size:13px}
     .price-row{display:flex;justify-content:space-between;align-items:center}
     .price{font-weight:800}
     .card .actions{display:flex;gap:8px;margin-top:auto}
-
-    /* Buttons */
     .small{padding:8px 10px;font-size:13px;border-radius:8px}
     .ghost{background:transparent;border:1px solid rgba(0,0,0,0.06)}
-
-    /* Cart panel */
     .cart-panel{position:sticky;top:24px;align-self:start;background:linear-gradient(180deg,var(--white),#fbfbfb);padding:14px;border-radius:12px;border:1px solid rgba(0,0,0,0.04);box-shadow:0 10px 30px rgba(0,0,0,0.05)}
     .cart-items{list-style:none;padding:0;margin:8px 0;display:flex;flex-direction:column;gap:8px;max-height:380px;overflow:auto}
     .cart-item{display:flex;gap:8px;align-items:center;padding:8px;border-radius:8px;background:#fff;border:1px solid rgba(0,0,0,0.03)}
     .cart-item img{width:56px;height:56px;object-fit:cover;border-radius:8px}
     .cart-item .meta{font-size:13px}
     .cart-footer{display:flex;gap:8px;justify-content:space-between;align-items:center;margin-top:10px}
-
     .empty{text-align:center;color:var(--muted);padding:10px;border-radius:8px;background:linear-gradient(180deg,rgba(0,0,0,0.01),transparent)}
-
-    /* Footer */
     footer{text-align:center;color:var(--muted);margin-top:20px;font-size:13px}
-
-    /* Mobile cart modal behavior */
     @media (max-width:980px){
       .cart-panel{position:fixed;right:12px;bottom:12px;width:calc(100% - 24px);max-width:420px;transform:translateY(110%);transition:transform .28s;z-index:120}
       .cart-panel.open{transform:translateY(0)}
       #cartToggleMobile{position:fixed;right:18px;bottom:18px;z-index:130;background:var(--charcoal);color:#fff;border-radius:999px;padding:12px 16px;border:none;display:inline-flex;gap:8px}
     }
-
-    /* PayPal modal */
     .pay-modal{position:fixed;inset:0;background:rgba(0,0,0,0.5);display:grid;place-items:center;z-index:200;padding:18px;display:none}
     .pay-box{background:#fff;padding:18px;border-radius:12px;max-width:520px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,0.3)}
     .pay-box h4{margin:0 0 8px 0}
@@ -124,57 +89,32 @@
           <p>Hoodies · Gorras · Buzos</p>
         </div>
       </a>
-
       <div class="actions">
-        <div class="filters" role="tablist" aria-label="categorías">
-          <button class="btn" data-filter="all">Todos</button>
+        <div class="filters">
+          <button class="btn accent" data-filter="all">Todos</button>
           <button class="btn" data-filter="hoodie">Hoodies</button>
           <button class="btn" data-filter="gorra">Gorras</button>
           <button class="btn" data-filter="buzo">Buzos</button>
         </div>
-
-        <button id="openCartDesktop" class="cart-btn" title="Abrir carrito">
-          🛒 <span id="cartTotalText">Carrito</span>
-          <span class="cart-badge" id="cartCount" style="background:var(--vibrant);color:var(--charcoal);padding:4px 8px;border-radius:999px;font-weight:800;margin-left:8px">0</span>
-        </button>
+        <button id="openCartDesktop" class="cart-btn">🛒 <span id="cartTotalText">Carrito</span> <span id="cartCount" style="background:var(--vibrant);color:var(--charcoal);padding:4px 8px;border-radius:999px;font-weight:800;margin-left:8px">0</span></button>
       </div>
     </header>
 
     <main>
-      <!-- Productos -->
-      <section class="panel" aria-labelledby="products-title">
-        <h2 id="products-title">Productos</h2>
-
+      <section class="panel">
+        <h2>Productos</h2>
         <div class="controls">
-          <div class="search" role="search">
-            🔎
-            <input id="searchInput" type="search" placeholder="Buscar producto..." aria-label="Buscar productos">
-          </div>
-
-          <div style="display:inline-flex;gap:8px">
-            <button class="btn primary" data-filter="all">Ver todos</button>
-            <button class="btn" data-filter="hoodie">Solo Hoodies</button>
-          </div>
+          <div class="search">🔎<input id="searchInput" type="search" placeholder="Buscar producto..."></div>
         </div>
-
-        <div id="productos" class="grid" aria-live="polite">
-          <!-- Render JS -->
-        </div>
+        <div id="productos" class="grid"></div>
       </section>
 
-      <!-- Carrito -->
-      <aside id="cartPanel" class="cart-panel" aria-label="Carrito">
+      <aside id="cartPanel" class="cart-panel">
         <h3>🛒 Carrito</h3>
-        <ul id="lista-carrito" class="cart-items" aria-live="polite"></ul>
-
-        <div id="cartEmpty" class="empty" style="display:none">Tu carrito está vacío. Agrega productos para comenzar.</div>
-
+        <ul id="lista-carrito" class="cart-items"></ul>
+        <div id="cartEmpty" class="empty" style="display:none">Tu carrito está vacío.</div>
         <div class="cart-footer" id="cartFooter" style="display:none">
-          <div>
-            <div class="meta" style="font-size:12px;color:var(--muted)">Total</div>
-            <div class="price" id="total">$0</div>
-          </div>
-
+          <div><div class="meta" style="font-size:12px;color:var(--muted)">Total</div><div class="price" id="total">$0</div></div>
           <div style="display:flex;flex-direction:column;gap:8px">
             <button id="paypalCartBtn" class="btn accent small">Pagar carrito (PayPal)</button>
             <button id="vaciarBtn" class="btn ghost small">🗑 Vaciar</button>
@@ -183,19 +123,15 @@
       </aside>
     </main>
 
-    <footer>
-      © <span id="year"></span> StreetStyle — Demo para GitHub Pages
-    </footer>
+    <footer>© <span id="year"></span> StreetStyle — Demo</footer>
   </div>
 
-  <!-- Botón móvil para abrir carrito -->
-  <button id="cartToggleMobile" style="display:none" aria-controls="cartPanel" aria-expanded="false">🛍️ <span id="mobileCartCount">0</span></button>
+  <button id="cartToggleMobile" style="display:none">🛍️ <span id="mobileCartCount">0</span></button>
 
-  <!-- Modal para PayPal -->
-  <div id="payModal" class="pay-modal" role="dialog" aria-modal="true">
-    <div class="pay-box" role="document">
+  <div id="payModal" class="pay-modal">
+    <div class="pay-box">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-        <h4 id="payTitle">Pagar</h4>
+        <h4>Pagar</h4>
         <button class="close-pay" id="closePay">X</button>
       </div>
       <div class="pay-row">
@@ -207,22 +143,17 @@
   </div>
 
   <script>
-    /************************************************************************
-     * DATOS INICIALES (tomados del código base original)
-     ************************************************************************/
+    // 🔹 Cambia esto por tu Client ID real desde developer.paypal.com
+    const PAYPAL_CLIENT_ID = 'TU_CLIENT_ID_AQUI'; 
+
+    const conversionRate = 4000;
     const productos = [
-      { id: 1, nombre: "Hoodie “Black Street”", precio: 120000, imagen: "https://remanence.co/cdn/shop/files/Hoodie_Regularfit_Summit.png?v=1758831119", categoria: "hoodie" },
-      { id: 2, nombre: "Hoodie “Retro Gray”", precio: 115000, imagen: "https://hmcolombia.vtexassets.com/arquivos/ids/5535032/Hoodie---Gris-claro-jaspeado---H-M-CO.jpg?v=638900935370670000", categoria: "hoodie" },
-      { id: 3, nombre: "Gorra “NYC Flat”", precio: 75000, imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEh0FJEpPEyFjmGpNNc2uyMDZ0Acl-TVpcdg&s", categoria: "gorra" },
-      { id: 4, nombre: "Gorra “Classic White”", precio: 70000, imagen: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT995PAxrwNjpXX7UAf_6i360oAl_WGhowhQQ&s", categoria: "gorra" },
-      { id: 5, nombre: "Buzo Oversize “Storm”", precio: 95000, imagen: "https://oaxis-cloud.s3.us-east-2.amazonaws.com/images/2025/08/01/medium/az2wEY4iznZH4TErRbfW.jpg", categoria: "buzo" },
-      { id: 6, nombre: "Buzo Oversize “Skyline”", precio: 99000, imagen: "https://tommycolombia.vtexassets.com/arquivos/ids/1451804-800-auto?v=638918347020400000&width=800&height=auto&aspect=true", categoria: "buzo" },
+      { id:1, nombre:"Hoodie “Black Street”", precio:120000, imagen:"https://remanence.co/cdn/shop/files/Hoodie_Regularfit_Summit.png?v=1758831119", categoria:"hoodie" },
+      { id:2, nombre:"Gorra “NYC Flat”", precio:75000, imagen:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQEh0FJEpPEyFjmGpNNc2uyMDZ0Acl-TVpcdg&s", categoria:"gorra" },
+      { id:3, nombre:"Buzo Oversize “Storm”", precio:95000, imagen:"https://oaxis-cloud.s3.us-east-2.amazonaws.com/images/2025/08/01/medium/az2wEY4iznZH4TErRbfW.jpg", categoria:"buzo" }
     ];
 
-    // carrito almacenado en localStorage para persistencia
     let carrito = JSON.parse(localStorage.getItem('streetstyle_cart') || '[]');
-
-    // referencias DOM
     const contenedorProductos = document.getElementById('productos');
     const listaCarrito = document.getElementById('lista-carrito');
     const totalEl = document.getElementById('total');
@@ -232,333 +163,119 @@
     const cartFooter = document.getElementById('cartFooter');
     const cartEmpty = document.getElementById('cartEmpty');
     const payModal = document.getElementById('payModal');
-    const payTitle = document.getElementById('payTitle');
     const payItemName = document.getElementById('payItemName');
     const payItemPrice = document.getElementById('payItemPrice');
     const paypalContainer = document.getElementById('paypal-button-container');
-    const cartToggleMobile = document.getElementById('cartToggleMobile');
-    const openCartDesktop = document.getElementById('openCartDesktop');
+    let paypalLoaded = false;
 
-    // === PAYPAL SETUP ===
-    // Reemplaza con tu client ID de PayPal (sandbox o live)
-// === PAYPAL SETUP ===
-// Reemplaza con tu Client ID real (de PayPal Developer Dashboard)
-const PAYPAL_CLIENT_ID = 'TU_CLIENT_ID_AQUI'; // <-- pon aquí el real
+    function formatCOP(n){return n.toLocaleString('es-CO',{style:'currency',currency:'COP',maximumFractionDigits:0});}
+    function formatUSD(n){return Number(n).toFixed(2);}
+    function saveCart(){localStorage.setItem('streetstyle_cart',JSON.stringify(carrito));}
 
-let conversionRate = 4000; // 1 USD = 4000 COP (ajústalo si quieres otra tasa)
-let paypalLoaded = false;
-let paypalButtonsInstance = null;
+    function loadPayPalSdk(cb){
+      if(paypalLoaded){cb();return;}
+      const s=document.createElement('script');
+      s.src=`https://www.paypal.com/sdk/js?client-id=${PAYPAL_CLIENT_ID}&currency=USD`;
+      s.onload=()=>{paypalLoaded=true;cb();};
+      s.onerror=()=>alert('Error cargando PayPal SDK. Revisa tu Client ID.');
+      document.head.appendChild(s);
+    }
 
-// Cargar SDK de PayPal dinámicamente
-function loadPayPalSdk(cb){
-  if(paypalLoaded){ cb(); return; }
-  const script = document.createElement('script');
-  script.src = `https://www.paypal.com/sdk/js?client-id=${JDZVBGHQNABVY}&currency=USD&intent=capture`;
-  script.onload = () => { paypalLoaded = true; cb(); };
-  script.onerror = () => { alert('Error cargando PayPal SDK. Revisa tu Client ID y conexión.'); };
-  document.head.appendChild(script);
-
-    /************************************************************************
-     * UTILIDADES
-     ************************************************************************/
-    function formatCOP(n){ return n.toLocaleString('es-CO', { style: 'currency', currency: 'COP', maximumFractionDigits: 0 }); }
-    function formatUSD(n){ return Number(n).toFixed(2); }
-    function saveCart(){ localStorage.setItem('streetstyle_cart', JSON.stringify(carrito)); }
-
-    /************************************************************************
-     * RENDER: Productos en grid
-     ************************************************************************/
-    function mostrarProductos(list = productos){
-      contenedorProductos.innerHTML = '';
-      if(!list.length){
-        contenedorProductos.innerHTML = `<div class="empty">No se encontraron productos.</div>`;
-        return;
-      }
-      list.forEach(p => {
-        const card = document.createElement('article');
-        card.className = 'card';
-        card.innerHTML = `
-          <div class="thumb"><img loading="lazy" src="${p.imagen}" alt="${p.nombre}"></div>
+    function mostrarProductos(){
+      contenedorProductos.innerHTML='';
+      productos.forEach(p=>{
+        const c=document.createElement('article');
+        c.className='card';
+        c.innerHTML=`
+          <div class="thumb"><img src="${p.imagen}" alt="${p.nombre}"></div>
           <h3>${p.nombre}</h3>
-          <div class="meta">${capitalize(p.categoria)}</div>
-          <div class="price-row">
-            <div class="price">${formatCOP(p.precio)}</div>
-          </div>
+          <div class="meta">${p.categoria}</div>
+          <div class="price-row"><div class="price">${formatCOP(p.precio)}</div></div>
           <div class="actions">
-            <button class="btn primary small add-btn" data-id="${p.id}">Agregar al carrito</button>
-            <button class="btn accent small buy-btn" data-id="${p.id}">Comprar con PayPal</button>
-          </div>
-        `;
-        contenedorProductos.appendChild(card);
+            <button class="btn primary small" data-id="${p.id}">Agregar</button>
+            <button class="btn accent small buy-btn" data-id="${p.id}">Comprar</button>
+          </div>`;
+        contenedorProductos.appendChild(c);
       });
-
-      // eventos: agregar al carrito
-      contenedorProductos.querySelectorAll('.add-btn').forEach(btn=>{
-        btn.addEventListener('click', e=>{
-          const id = Number(e.currentTarget.dataset.id);
-          agregarAlCarrito(id);
-        });
-      });
-
-      // eventos: comprar con PayPal
-      contenedorProductos.querySelectorAll('.buy-btn').forEach(btn=>{
-        btn.addEventListener('click', e=>{
-          const id = Number(e.currentTarget.dataset.id);
-          const prod = productos.find(x=>x.id===id);
-          if(!prod) return;
-          // abrir modal y renderizar botón PayPal para este producto
-          abrirPayModal(prod);
-        });
-      });
+      contenedorProductos.querySelectorAll('.primary').forEach(b=>b.onclick=()=>agregarAlCarrito(+b.dataset.id));
+      contenedorProductos.querySelectorAll('.buy-btn').forEach(b=>b.onclick=()=>comprarProducto(+b.dataset.id));
     }
 
-    /************************************************************************
-     * CARRITO: agregar, actualizar, mostrar
-     ************************************************************************/
     function agregarAlCarrito(id){
-      const existe = carrito.find(i=>i.id===id);
-      if(existe){ existe.cantidad++; }
-      else { const p = productos.find(x=>x.id===id); carrito.push({...p, cantidad:1}); }
-      saveCart(); actualizarCarritoDOM();
+      const ex=carrito.find(i=>i.id===id);
+      if(ex)ex.cantidad++;else carrito.push({...productos.find(p=>p.id===id),cantidad:1});
+      saveCart();actualizarCarrito();
     }
 
-    function actualizarCarritoDOM(){
-      listaCarrito.innerHTML = '';
-      if(carrito.length === 0){
-        cartEmpty.style.display = 'block';
-        cartFooter.style.display = 'none';
-      } else {
-        cartEmpty.style.display = 'none';
-        cartFooter.style.display = 'flex';
-      }
-
-      let total = 0;
-      let qty = 0;
-
-      carrito.forEach(item=>{
-        const li = document.createElement('li');
-        li.className = 'cart-item';
-        li.innerHTML = `
-          <img src="${item.imagen}" alt="${item.nombre}">
-          <div class="meta"><b>${item.nombre}</b><div class="muted-small">${formatCOP(item.precio)} · x${item.cantidad}</div></div>
-          <div style="display:flex;flex-direction:column;gap:6px;align-items:center">
-            <div style="display:flex;gap:6px;align-items:center">
-              <button class="small ghost dec" data-id="${item.id}">−</button>
-              <div style="min-width:26px;text-align:center">${item.cantidad}</div>
-              <button class="small ghost inc" data-id="${item.id}">+</button>
-            </div>
-            <button class="small ghost remove" data-id="${item.id}">Eliminar</button>
-          </div>
-        `;
+    function actualizarCarrito(){
+      listaCarrito.innerHTML='';
+      if(!carrito.length){cartEmpty.style.display='block';cartFooter.style.display='none';}
+      else{cartEmpty.style.display='none';cartFooter.style.display='flex';}
+      let total=0,cant=0;
+      carrito.forEach(it=>{
+        total+=it.precio*it.cantidad;cant+=it.cantidad;
+        const li=document.createElement('li');
+        li.className='cart-item';
+        li.innerHTML=`<img src="${it.imagen}"><div class="meta"><b>${it.nombre}</b><div>${formatCOP(it.precio)} · x${it.cantidad}</div></div>`;
         listaCarrito.appendChild(li);
-
-        total += item.precio * item.cantidad;
-        qty += item.cantidad;
       });
-
-      totalEl.textContent = formatCOP(total);
-      cartCount.textContent = qty;
-      mobileCartCount.textContent = qty;
-      document.getElementById('cartTotalText').textContent = qty ? `Carrito (${qty})` : 'Carrito';
-
-      // attach events
-      listaCarrito.querySelectorAll('.inc').forEach(b=>b.addEventListener('click',()=> cambiarCantidad(Number(b.dataset.id),1)));
-      listaCarrito.querySelectorAll('.dec').forEach(b=>b.addEventListener('click',()=> cambiarCantidad(Number(b.dataset.id),-1)));
-      listaCarrito.querySelectorAll('.remove').forEach(b=>b.addEventListener('click',()=> quitarProducto(Number(b.dataset.id))));
+      totalEl.textContent=formatCOP(total);
+      cartCount.textContent=cant;
+      mobileCartCount.textContent=cant;
     }
 
-    function cambiarCantidad(id, delta){
-      const it = carrito.find(i=>i.id===id);
-      if(!it) return;
-      it.cantidad += delta;
-      if(it.cantidad <= 0){
-        if(confirm('Eliminar producto del carrito?')) carrito = carrito.filter(i=>i.id!==id);
-        else it.cantidad = 1;
-      }
-      saveCart(); actualizarCarritoDOM();
+    function comprarProducto(id){
+      const prod=productos.find(p=>p.id===id);
+      if(!prod)return;
+      abrirPayModal(prod);
     }
 
-    function quitarProducto(id){
-      carrito = carrito.filter(i=>i.id!==id);
-      saveCart(); actualizarCarritoDOM();
-    }
-
-    document.getElementById('vaciarBtn').addEventListener('click', ()=>{
-      if(confirm('¿Vaciar el carrito?')){ carrito = []; saveCart(); actualizarCarritoDOM(); }
-    });
-
-    /************************************************************************
-     * PAYPAL: abrir modal y renderizar botón (producto individual o carrito)
-     *
-     * Estrategia:
-     * - Abrir modal con info y luego cargar SDK (si no está cargado)
-     * - Renderizar paypal.Buttons con createOrder -> amount en USD (conversión)
-     *
-     ************************************************************************/
-    function abrirPayModal(product = null){
-      // si product != null -> pagar solo ese producto
-      // si product == null -> pagar total del carrito
-      let amountCOP = 0;
-      let label = 'Compra';
-
-      if(product){
-        amountCOP = product.precio;
-        label = product.nombre;
-      } else {
-        amountCOP = carrito.reduce((s,i)=>s + i.precio * i.cantidad, 0);
-        label = 'Carrito';
-      }
-
-      if(amountCOP <= 0) { alert('No hay monto a pagar.'); return; }
-
-      // actualizar modal info
-      payTitle.textContent = 'Pagar con PayPal';
-      payItemName.textContent = label;
-      payItemPrice.textContent = formatCOP(amountCOP);
-
-      // show modal
-      payModal.style.display = 'grid';
-
-      // limpiar contenedor paypal anterior
-      paypalContainer.innerHTML = '';
-
-      // load sdk then render button
+    function abrirPayModal(prod){
+      payModal.style.display='grid';
+      payItemName.textContent=prod.nombre;
+      payItemPrice.textContent=formatCOP(prod.precio);
+      paypalContainer.innerHTML='';
       loadPayPalSdk(()=>{
-        renderPayPalButtons(amountCOP, product);
+        paypal.Buttons({
+          style:{color:'gold'},
+          createOrder:(data,actions)=>actions.order.create({
+            purchase_units:[{amount:{value:formatUSD(prod.precio/conversionRate),currency_code:'USD'},description:prod.nombre}]
+          }),
+          onApprove:(data,actions)=>actions.order.capture().then(d=>{
+            alert('✅ Pago completado por '+d.payer.name.given_name);
+            payModal.style.display='none';
+          }),
+          onError:(err)=>alert('Error en pago PayPal. '+err)
+        }).render('#paypal-button-container');
       });
     }
 
-    // cerrar modal
-    document.getElementById('closePay').addEventListener('click', ()=> { payModal.style.display='none'; if(paypalButtonsInstance) { try{ paypalButtonsInstance.close(); }catch(e){} } });
-    payModal.addEventListener('click', (e)=> { if(e.target === payModal){ payModal.style.display='none'; if(paypalButtonsInstance) try{ paypalButtonsInstance.close(); }catch(e){} } });
-
-    /**
-     * Renderiza el botón PayPal para un monto en COP (convertimos a USD)
-     * product: si es null -> es carrito entero
-     */
-    function renderPayPalButtons(amountCOP, product = null){
-      // convertir a USD (simple): USD = COP / conversionRate
-      const usdAmount = Number((amountCOP / conversionRate).toFixed(2));
-      if(usdAmount <= 0){ alert('Monto muy pequeño para procesar en PayPal. Ajusta conversionRate o usa USD.'); return; }
-
-      // Destruir instancia anterior si existe
-      if(paypalButtonsInstance && typeof paypalButtonsInstance.close === 'function'){
-        try{ paypalButtonsInstance.close(); } catch(e){}
-      }
-
-      // crear botones
-      paypalButtonsInstance = paypal.Buttons({
-        style: { layout:'vertical', color:'gold', shape:'rect', label:'paypal' },
-
-        createOrder: function(data, actions){
-          return actions.order.create({
-            purchase_units: [{
-              amount: {
-                value: formatUSD(usdAmount),
-                currency_code: 'USD'
-              },
-              description: product ? product.nombre : 'Pago StreetStyle - Carrito'
-            }]
-          });
-        },
-
-        onApprove: function(data, actions){
-          return actions.order.capture().then(function(details){
-            // aquí en un sistema real registrarías la orden en tu backend
-            alert('🎉 Pago completado: ' + (details.payer.name && details.payer.name.given_name ? details.payer.name.given_name : '') + '. Gracias por tu compra!');
-            // si pagó un producto individual no agregar nada; si pagó con carrito, vaciar carrito
-            if(!product) carrito = [];
-            saveCart(); actualizarCarritoDOM();
-            payModal.style.display = 'none';
-          });
-        },
-
-        onError: function(err){
-          console.error(err);
-          alert('Error procesando pago con PayPal. Revisa la consola.');
-        }
+    document.getElementById('paypalCartBtn').onclick=()=>{
+      if(!carrito.length)return alert('Carrito vacío');
+      const total=carrito.reduce((s,i)=>s+i.precio*i.cantidad,0);
+      payModal.style.display='grid';
+      payItemName.textContent='Carrito StreetStyle';
+      payItemPrice.textContent=formatCOP(total);
+      paypalContainer.innerHTML='';
+      loadPayPalSdk(()=>{
+        paypal.Buttons({
+          createOrder:(data,actions)=>actions.order.create({
+            purchase_units:[{amount:{value:formatUSD(total/conversionRate),currency_code:'USD'},description:'Carrito StreetStyle'}]
+          }),
+          onApprove:(data,actions)=>actions.order.capture().then(d=>{
+            alert('✅ Pago del carrito completado. Gracias '+d.payer.name.given_name+'!');
+            carrito=[];saveCart();actualizarCarrito();payModal.style.display='none';
+          })
+        }).render('#paypal-button-container');
       });
+    };
 
-      // render al contenedor
-      paypalButtonsInstance.render('#paypal-button-container');
-    }
+    document.getElementById('vaciarBtn').onclick=()=>{carrito=[];saveCart();actualizarCarrito();}
+    document.getElementById('closePay').onclick=()=>{payModal.style.display='none';}
 
-    // botón PayPal para carrito
-    document.getElementById('paypalCartBtn').addEventListener('click', ()=>{
-      abrirPayModal(null);
-    });
-
-    /************************************************************************
-     * FILTRADO & BÚSQUEDA, UI Cart mobile behavior
-     ************************************************************************/
-    const filters = document.querySelectorAll('[data-filter]');
-    filters.forEach(btn=> btn.addEventListener('click', ()=>{
-      const f = btn.dataset.filter;
-      filtrarProductos(f);
-      filters.forEach(b=>b.classList.remove('accent'));
-      btn.classList.add('accent');
-    }));
-
-    function filtrarProductos(filter='all', q=''){
-      q = (q || '').trim().toLowerCase();
-      const filtered = productos.filter(p=>{
-        const matchCat = (filter==='all') ? true : p.categoria === filter;
-        const matchQ = q ? (p.nombre.toLowerCase().includes(q) || p.categoria.toLowerCase().includes(q)) : true;
-        return matchCat && matchQ;
-      });
-      mostrarProductos(filtered);
-    }
-
-    document.getElementById('searchInput').addEventListener('input', (e)=>{
-      const q = e.target.value;
-      // obtener filtro activo
-      const active = Array.from(filters).find(b=>b.classList.contains('accent'));
-      const filt = active ? active.dataset.filter : 'all';
-      filtrarProductos(filt, q);
-    });
-
-    // Cart toggle mobile & desktop helpers
-    function setupCartUI(){
-      function refresh(){
-        if(window.matchMedia('(max-width:980px)').matches){
-          cartToggleMobile.style.display = 'inline-flex';
-          cartPanel.classList.remove('open');
-        } else {
-          cartToggleMobile.style.display = 'none';
-          cartPanel.classList.add('open');
-        }
-      }
-      refresh();
-      window.addEventListener('resize', refresh);
-      cartToggleMobile.addEventListener('click', ()=> {
-        const open = cartPanel.classList.toggle('open');
-        cartToggleMobile.setAttribute('aria-expanded', open);
-      });
-      openCartDesktop.addEventListener('click', ()=>{
-        if(window.matchMedia('(max-width:980px)').matches) cartPanel.classList.add('open');
-        else cartPanel.scrollIntoView({behavior:'smooth', block:'center'});
-      });
-    }
-
-    /************************************************************************
-     * INITIALIZE
-     ************************************************************************/
-    function init(){
-      mostrarProductos();
-      actualizarCarritoDOM();
-      setupCartUI();
-      // marcar "todos" por defecto
-      document.querySelectorAll('[data-filter]').forEach(b=> { if(b.dataset.filter==='all') b.classList.add('accent'); });
-      document.getElementById('year').textContent = new Date().getFullYear();
-
-      // mostrar carrito toggle si mobile
-      if(window.matchMedia('(max-width:980px)').matches) cartToggleMobile.style.display = 'inline-flex';
-    }
-
-    // helper
-    function capitalize(s){ return s.charAt(0).toUpperCase() + s.slice(1); }
-
-    init();
+    document.getElementById('year').textContent = new Date().getFullYear();
+    mostrarProductos();
+    actualizarCarrito();
   </script>
 </body>
 </html>

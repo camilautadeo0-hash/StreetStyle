@@ -241,23 +241,22 @@
 
     // === PAYPAL SETUP ===
     // Reemplaza con tu client ID de PayPal (sandbox o live)
-    const PAYPAL_CLIENT_ID = 'JDZVBGHQNABVY';
-    // Si quieres usar COP directamente, puedes cambiar currency = 'COP'
-    // Aquí usamos USD y una tasa de conversión simple para demo (ajusta según tu caso)
-    let conversionRate = 4000; // 1 USD = 4000 COP (ajusta si quieres otra)
-    let paypalLoaded = false;
-    let paypalButtonsInstance = null;
+// === PAYPAL SETUP ===
+// Reemplaza con tu Client ID real (de PayPal Developer Dashboard)
+const PAYPAL_CLIENT_ID = 'TU_CLIENT_ID_AQUI'; // <-- pon aquí el real
 
-    // Cargar SDK de PayPal (dinámicamente)
-    function loadPayPalSdk(cb){
-      if(paypalLoaded){ cb(); return; }
-      const script = document.createElement('script');
-      // Usamos USD por defecto; si prefieres COP, cambiar currency=COP
-      script.src = `https://www.paypal.com/sdk/js?client-id=${JDZVBGHQNABVY}&currency=USD&intent=capture`;
-      script.onload = () => { paypalLoaded = true; cb(); };
-      script.onerror = () => { alert('Error cargando PayPal SDK. Revisa tu Client ID y conexión.'); };
-      document.head.appendChild(script);
-    }
+let conversionRate = 4000; // 1 USD = 4000 COP (ajústalo si quieres otra tasa)
+let paypalLoaded = false;
+let paypalButtonsInstance = null;
+
+// Cargar SDK de PayPal dinámicamente
+function loadPayPalSdk(cb){
+  if(paypalLoaded){ cb(); return; }
+  const script = document.createElement('script');
+  script.src = `https://www.paypal.com/sdk/js?client-id=${JDZVBGHQNABVY}&currency=USD&intent=capture`;
+  script.onload = () => { paypalLoaded = true; cb(); };
+  script.onerror = () => { alert('Error cargando PayPal SDK. Revisa tu Client ID y conexión.'); };
+  document.head.appendChild(script);
 
     /************************************************************************
      * UTILIDADES
